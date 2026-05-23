@@ -1,0 +1,296 @@
+---
+---
+
+<section class="portfolio" id="work">
+  <div class="eyebrow">Selected Work</div>
+  <div class="accent-bar"></div>
+  <h2>Projects Built in the Open</h2>
+  <p class="intro">
+    These projects represent hands-on work from the last few years — built independently,
+    architected from scratch, and deployed to real infrastructure. I'm releasing them
+    publicly over the next month or two as I get each one to a standard I'm comfortable
+    putting my name on. Know-It-All is live now. The others are coming.
+  </p>
+
+  <div class="project-list">
+
+    <div class="project-card live">
+      <div class="card-header">
+        <div class="card-meta">
+          <span class="project-number">01</span>
+          <span class="status-badge live">Live</span>
+        </div>
+      </div>
+      <h3>Know-It-All Tutor System</h3>
+      <p class="tagline">Serverless ML-powered learning — built to understand meaning, not match strings.</p>
+      <p>
+        A web application that turns terminology-heavy subjects into interactive learning experiences.
+        Users define a knowledge domain and its terms; the system evaluates answers semantically —
+        understanding what you meant, not just what you typed — using a custom cross-encoder model
+        quantized for low-latency inference without a PyTorch dependency.
+      </p>
+      <p>
+        The architecture is a six-stack AWS CDK deployment — network, database, auth, backend,
+        frontend, and monitoring — each independently deployable. Auth runs through a custom
+        Cognito registration gate with pre-signup Lambda approval. CI/CD via GitHub Actions
+        includes security scanning on every push: Bandit, Checkov, TruffleHog, and pip-audit.
+      </p>
+      <div class="stack">
+        <span class="tag">Python 3.11</span>
+        <span class="tag">Lambda</span>
+        <span class="tag">API Gateway</span>
+        <span class="tag">PostgreSQL / RDS</span>
+        <span class="tag">React 18</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">Tailwind</span>
+        <span class="tag">AWS CDK</span>
+        <span class="tag">Cognito</span>
+        <span class="tag">CloudFront</span>
+        <span class="tag">ONNX</span>
+        <span class="tag">GitHub Actions</span>
+      </div>
+      <div class="card-links">
+        <a class="link-btn primary" href="https://d3awlgby2429wc.cloudfront.net" target="_blank" rel="noopener">Live App ↗</a>
+        <a class="link-btn secondary" href="https://github.com/huschlej111/ai-tutor-system" target="_blank" rel="noopener">README ↗</a>
+      </div>
+    </div>
+
+    <div class="soon-grid">
+
+      <div class="project-card soon">
+        <div class="card-header">
+          <div class="card-meta">
+            <span class="project-number">02</span>
+            <span class="status-badge soon">Coming Soon</span>
+          </div>
+        </div>
+        <h3>Peekaboo Intelligence</h3>
+        <p class="tagline">Privacy-first home security. Face recognition runs on-device — raw video never leaves your local network.</p>
+        <p class="source-note">Source available on GitHub at release.</p>
+      </div>
+
+      <div class="project-card soon">
+        <div class="card-header">
+          <div class="card-meta">
+            <span class="project-number">03</span>
+            <span class="status-badge soon">Coming Soon</span>
+          </div>
+        </div>
+        <h3>Strategic Knowledge Engine</h3>
+        <p class="tagline">A local-first knowledge pipeline with anonymous search, LLM-assisted triage, and human review — wired via Model Context Protocol.</p>
+        <p class="source-note">Source available on GitHub at release.</p>
+      </div>
+
+      <div class="project-card soon">
+        <div class="card-header">
+          <div class="card-meta">
+            <span class="project-number">04</span>
+            <span class="status-badge soon">Coming Soon</span>
+          </div>
+        </div>
+        <h3>network-mcp</h3>
+        <p class="tagline">An MCP server that gives AI assistants structured, approval-gated access to manage a home lab network.</p>
+        <p class="source-note">Source available on GitHub at release.</p>
+      </div>
+
+      <div class="project-card soon">
+        <div class="card-header">
+          <div class="card-meta">
+            <span class="project-number">05</span>
+            <span class="status-badge soon">Coming Soon</span>
+          </div>
+        </div>
+        <h3>Private Reading</h3>
+        <p class="tagline">Converts documents to audiobooks using self-hosted text-to-speech inference. Markdown, PDF, Word — in, audio — out.</p>
+        <p class="source-note">Source available on GitHub at release.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .portfolio {
+    padding: 6rem 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .accent-bar {
+    width: 48px;
+    height: 3px;
+    background: var(--accent-dark);
+    border-radius: 2px;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+  }
+
+  .intro {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-soft);
+    max-width: 680px;
+    margin-bottom: 4rem;
+  }
+
+  .project-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .project-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2.25rem;
+  }
+
+  .project-card.live {
+    border-color: rgba(96, 165, 250, 0.2);
+    background: linear-gradient(135deg, rgba(37,99,235,0.1) 0%, var(--surface-card) 50%);
+  }
+
+  .project-card.soon { opacity: 0.72; }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .card-meta { display: flex; align-items: center; gap: 0.75rem; }
+
+  .project-number {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .status-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .status-badge.live {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #34d399;
+  }
+
+  .status-badge.soon {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-muted);
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .tagline {
+    font-size: 0.95rem;
+    color: var(--accent);
+    font-style: italic;
+    margin-bottom: 1.25rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-soft);
+    margin-bottom: 1rem;
+  }
+
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .card-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .link-btn {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.55rem 1.25rem;
+    border-radius: 6px;
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+
+  .link-btn.primary {
+    background: var(--accent-dark);
+    color: var(--text);
+  }
+
+  .link-btn.primary:hover { background: #1d4ed8; }
+
+  .link-btn.secondary {
+    background: transparent;
+    color: var(--text-soft);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .link-btn.secondary:hover {
+    border-color: rgba(255,255,255,0.3);
+    color: var(--text);
+  }
+
+  .source-note {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    margin-top: 1.25rem;
+    margin-bottom: 0;
+  }
+
+  .soon-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+</style>

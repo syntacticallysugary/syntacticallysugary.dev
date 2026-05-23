@@ -1,0 +1,246 @@
+---
+---
+
+<section class="services" id="services">
+  <div class="eyebrow">Services</div>
+  <div class="accent-bar"></div>
+  <h2>What I Can Do For You</h2>
+  <p class="section-intro">
+    Engagements range from architecture reviews and strategic advisory to hands-on delivery.
+    Every engagement starts with understanding the business problem, not the technology solution.
+  </p>
+
+  <div class="cards">
+
+    <div class="card featured">
+      <div class="card-left">
+        <div class="card-label"><span class="dot"></span>01</div>
+        <h3>AI &amp; Agentic Systems</h3>
+        <p>
+          The opportunity isn't chatbots. It's systems that act — that reason across tools,
+          data sources, and workflows on behalf of the business. I build AI-native applications
+          that go beyond wrappers: semantic evaluation engines, knowledge pipelines, edge inference
+          systems, and agentic workflows that integrate with the systems you already run.
+          If your AI strategy is "we added a chatbot to the website," we have work to do.
+        </p>
+      </div>
+      <div class="card-right">
+        <p class="card-aside">
+          This is where language, computation, and business converge. Large language models
+          aren't just a new tool — they're the first technology in decades that rewards
+          the combination of linguistic fluency, engineering depth, and business judgment
+          simultaneously. That intersection is where I work.
+        </p>
+        <div class="tags">
+          <span class="tag">LLM integration</span>
+          <span class="tag">Agentic architecture</span>
+          <span class="tag">MCP</span>
+          <span class="tag">RAG pipelines</span>
+          <span class="tag">ML inference</span>
+          <span class="tag">SageMaker</span>
+          <span class="tag">Edge AI</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><span class="dot"></span>02</div>
+      <h3>Cloud Architecture</h3>
+      <p>
+        I hold current AWS certifications in solutions architecture and machine learning,
+        and I've designed multi-tier serverless systems, VPC architectures, and CI/CD pipelines
+        as hands-on work — not just coursework. What I bring beyond the technical foundation
+        is 25 years of knowing how technology decisions play out inside organizations: what gets
+        funded, what gets maintained, and what quietly becomes someone else's problem in three years.
+        I design with that perspective built in.
+      </p>
+      <div class="tags">
+        <span class="tag">AWS</span>
+        <span class="tag">Serverless</span>
+        <span class="tag">VPC</span>
+        <span class="tag">IAM</span>
+        <span class="tag">IaC</span>
+        <span class="tag">CI/CD</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><span class="dot"></span>03</div>
+      <h3>Enterprise Modernization</h3>
+      <p>
+        I've run the programs where the answer was "we need to rebuild this, the right way,
+        without stopping the business." Legacy platform migration, application portfolio
+        rationalization, large-scale modernization with real budgets and real consequences.
+        The technical work is the easy part. The hard part is keeping the organization moving
+        while the floor is being replaced beneath them.
+      </p>
+      <div class="tags">
+        <span class="tag">Legacy migration</span>
+        <span class="tag">Platform transformation</span>
+        <span class="tag">SAFe</span>
+        <span class="tag">Portfolio rationalization</span>
+      </div>
+    </div>
+
+    <div class="card wide">
+      <div class="card-label"><span class="dot"></span>04</div>
+      <h3>Technology Strategy &amp; Advisory</h3>
+      <p>
+        Sometimes the most valuable thing isn't someone to write the code — it's someone
+        to tell you what to build, in what order, and why. I work with leadership teams to
+        develop technology roadmaps, evaluate vendors, structure engineering organizations,
+        and translate between what the business needs and what the technology team can
+        realistically deliver.
+      </p>
+      <div class="tags">
+        <span class="tag">Fractional CTO</span>
+        <span class="tag">Roadmap development</span>
+        <span class="tag">Vendor selection</span>
+        <span class="tag">Team structure</span>
+        <span class="tag">Budget planning</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .services {
+    padding: 6rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .accent-bar {
+    width: 48px;
+    height: 3px;
+    background: var(--accent-dark);
+    border-radius: 2px;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-intro {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    line-height: 1.75;
+    margin-bottom: 3.5rem;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2.25rem;
+    transition: border-color 0.2s;
+  }
+
+  .card:hover { border-color: rgba(96, 165, 250, 0.3); }
+
+  .card.featured {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(37,99,235,0.12) 0%, var(--surface-card) 55%);
+    border-color: rgba(96, 165, 250, 0.2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .card.wide { grid-column: 1 / -1; }
+  .card.wide p { max-width: 680px; }
+
+  .card-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .featured .card-label::after {
+    content: 'Priority Focus';
+    font-size: 0.65rem;
+    background: rgba(96,165,250,0.12);
+    border: 1px solid rgba(96,165,250,0.3);
+    color: var(--accent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    margin-left: 0.5rem;
+  }
+
+  h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text-soft);
+  }
+
+  .card-aside {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    padding-top: 2.5rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+  }
+</style>

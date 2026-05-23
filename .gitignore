@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Astro generated
+.astro/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+oci-snag/.venv/
+oci-snag/snag.log
+snag.log
+*.log
+
+# Playwright MCP artifacts
+.playwright-mcp/
+
+# Dev previews and screenshots
+*.html
+!src/**/*.html
+*.png
+*.pdf
+
+# Editor
+.vscode/
+
+# Claude Code project settings
+.claude/
+
+# Environment
+.env
+.env.*
