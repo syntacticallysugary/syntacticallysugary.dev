@@ -30,10 +30,6 @@ jobs:
           printf -- '%s' "$SSH_PRIVATE_KEY" | base64 -d > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           printf '%s\n' "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
-          ssh-keygen -l -f ~/.ssh/id_ed25519
-
-      - name: Test SSH
-        run: ssh -v -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no ubuntu@${{ secrets.OCI_HOST }} "echo SSH_OK"
 
       - name: Deploy
         run: rsync -az --delete -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no" dist/ ubuntu@${{ secrets.OCI_HOST }}:/var/www/syntacticallysugary.dev/
