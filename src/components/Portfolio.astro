@@ -35,6 +35,14 @@
         Cognito registration gate with pre-signup Lambda approval. CI/CD via GitHub Actions
         includes security scanning on every push: Bandit, Checkov, TruffleHog, and pip-audit.
       </p>
+      <p class="access-note">
+        If you'd like to explore it, you can register for an account at the link below. Accounts
+        aren't provisioned automatically — registration lands in a review queue and access is
+        granted manually. Why the gate? Two reasons, both honest: bots are a real nuisance, and
+        the free-tier cost model depends on keeping traffic predictable. Automated signups solve
+        neither problem and create new ones. So a human reviews each request. If you're a real
+        person who wants to poke around, you'll hear back.
+      </p>
       <div class="stack">
         <span class="tag">Python 3.11</span>
         <span class="tag">Lambda</span>
@@ -46,7 +54,8 @@
         <span class="tag">AWS CDK</span>
         <span class="tag">Cognito</span>
         <span class="tag">CloudFront</span>
-        <span class="tag">ONNX</span>
+        <span class="tag tag-ai">Semantic Inference</span>
+        <span class="tag">ONNX Runtime</span>
         <span class="tag">GitHub Actions</span>
       </div>
       <div class="card-links">
@@ -278,6 +287,23 @@
   .link-btn.secondary:hover {
     border-color: rgba(255,255,255,0.3);
     color: var(--text);
+  }
+
+  .access-note {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+    font-style: italic;
+    border-left: 2px solid rgba(96, 165, 250, 0.25);
+    padding-left: 1rem;
+    margin-top: 0.25rem;
+  }
+
+  .tag-ai {
+    color: var(--accent);
+    background: rgba(96, 165, 250, 0.1);
+    border-color: rgba(96, 165, 250, 0.3);
+    font-weight: 600;
   }
 
   .source-note {
