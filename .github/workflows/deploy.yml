@@ -22,11 +22,14 @@ jobs:
         run: npm run build
 
       - name: Setup SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.OCI_SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.OCI_KNOWN_HOSTS }}
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.OCI_SSH_KEY }}" > ~/.ssh/id_ed25519
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          echo "${{ secrets.OCI_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          printf '%s\n' "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
 
       - name: Deploy
-        run: rsync -az --delete dist/ ubuntu@${{ secrets.OCI_HOST }}:/var/www/syntacticallysugary.dev/
+        run: rsync -az --delete -e "ssh -i ~/.ssh/id_ed25519" dist/ ubuntu@${{ secrets.OCI_HOST }}:/var/www/syntacticallysugary.dev/
