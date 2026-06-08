@@ -72,15 +72,17 @@
         </div>
       </div>
       <h3>Private Reading</h3>
-      <p class="tagline">Paste text. Get an audiobook. The API is serverless in OCI; the GPU is a home-lab box — wired together by a WireGuard tunnel and a webhook.</p>
+      <p class="tagline">Paste text. Get an audiobook. The API is serverless in Oracle Cloud Infrastructure (OCI); the GPU is a home-lab box — wired together by a WireGuard tunnel and a webhook.</p>
       <p>
         A hybrid cloud/on-premises audiobook service. The interesting part isn't the conversion —
         it's the architecture that makes a serverless cloud function and an on-premises GPU cooperate
-        across NAT. When a job is submitted, an OCI Function stores it and immediately POSTs a webhook
-        to a worker running in a home-lab k3s cluster, delivered over a WireGuard VPN that routes
-        through the OCI ARM instance. The worker claims the job, chunks the text, and runs inference
-        locally using Qwen3-TTS-12Hz-1.7B-Base — SOTA open-source English TTS at 1.24% WER on the
-        Seed-TTS benchmark. The result lands in OCI Object Storage as a downloadable Opus file.
+        seamlessly across the internet. When a job is submitted, an OCI Function stores it and
+        immediately POSTs a webhook to a worker running in a home-lab Kubernetes (k3s) cluster,
+        delivered over a WireGuard VPN that routes through an OCI ARM instance. The worker claims
+        the job, chunks the text, and runs inference locally using an open-source English
+        Text-to-Speech (TTS) model (Qwen3-TTS-12Hz-1.7B-Base at 1.24% WER on the Seed-TTS
+        benchmark, for those who care about such things). The result lands in OCI Object Storage
+        as a downloadable Opus file.
       </p>
       <p>
         Push for speed, poll for reliability. The webhook wakes the worker immediately; a 10-second
@@ -88,11 +90,11 @@
         same place.
       </p>
       <p>
-        JWT verification happens inside the OCI Function without an outbound network call — Cognito's
-        public keys are embedded directly in the function, which matters when running in a private
-        subnet with no NAT gateway. Text preprocessing strips the artifacts PDF extraction leaves
-        behind (citation brackets, DOI strings, footnote markers) before chunking, so the audio
-        sounds like a human read it.
+        JSON Web Token (JWT) verification happens inside the OCI Function without an outbound
+        network call — Cognito's public keys are embedded directly in the function, which matters
+        when running in a private subnet with no internet gateway. Text preprocessing strips the
+        artifacts PDF extraction leaves behind (citation brackets, DOI strings, footnote markers)
+        before chunking, so the audio sounds like a human read it.
       </p>
       <p class="access-note">
         Same account gate as Know-It-All Tutor — and the same account works for both. Registration
