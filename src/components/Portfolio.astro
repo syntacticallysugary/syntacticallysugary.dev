@@ -9,7 +9,7 @@
     These projects represent hands-on work from the last few years — built independently,
     architected from scratch, and deployed to real infrastructure. I'm releasing them
     publicly over the next month or two as I get each one to a standard I'm comfortable
-    putting my name on. Know-It-All is live now. The others are coming.
+    putting my name on. Two are live now. The others are coming.
   </p>
 
   <div class="project-list">
@@ -64,12 +64,67 @@
       </div>
     </div>
 
+    <div class="project-card live">
+      <div class="card-header">
+        <div class="card-meta">
+          <span class="project-number">02</span>
+          <span class="status-badge live">Live</span>
+        </div>
+      </div>
+      <h3>Private Reading</h3>
+      <p class="tagline">Paste text. Get an audiobook. The API is serverless in OCI; the GPU is a home-lab box — wired together by a WireGuard tunnel and a webhook.</p>
+      <p>
+        A hybrid cloud/on-premises audiobook service. The interesting part isn't the conversion —
+        it's the architecture that makes a serverless cloud function and an on-premises GPU cooperate
+        across NAT. When a job is submitted, an OCI Function stores it and immediately POSTs a webhook
+        to a worker running in a home-lab k3s cluster, delivered over a WireGuard VPN that routes
+        through the OCI ARM instance. The worker claims the job, chunks the text, and runs inference
+        locally using Qwen3-TTS-12Hz-1.7B-Base — SOTA open-source English TTS at 1.24% WER on the
+        Seed-TTS benchmark. The result lands in OCI Object Storage as a downloadable Opus file.
+      </p>
+      <p>
+        Push for speed, poll for reliability. The webhook wakes the worker immediately; a 10-second
+        polling loop runs as a fallback in case the webhook is missed. Either path arrives at the
+        same place.
+      </p>
+      <p>
+        JWT verification happens inside the OCI Function without an outbound network call — Cognito's
+        public keys are embedded directly in the function, which matters when running in a private
+        subnet with no NAT gateway. Text preprocessing strips the artifacts PDF extraction leaves
+        behind (citation brackets, DOI strings, footnote markers) before chunking, so the audio
+        sounds like a human read it.
+      </p>
+      <p class="access-note">
+        Same account gate as Know-It-All Tutor — and the same account works for both. Registration
+        lands in a review queue and access is granted manually. If you're a real person who wants
+        to try it, register once and you're in on both apps.
+      </p>
+      <div class="stack">
+        <span class="tag">Python</span>
+        <span class="tag">OCI Functions</span>
+        <span class="tag">OCI API Gateway</span>
+        <span class="tag">OCI Object Storage</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">AWS Cognito</span>
+        <span class="tag">Terraform</span>
+        <span class="tag">k3s</span>
+        <span class="tag">WireGuard</span>
+        <span class="tag tag-ai">Qwen3-TTS</span>
+        <span class="tag">Gitea Actions</span>
+        <span class="tag">Vanilla JS</span>
+      </div>
+      <div class="card-links">
+        <a class="link-btn primary" href="https://reading.syntacticallysugary.dev/" target="_blank" rel="noopener">Live App ↗</a>
+        <a class="link-btn secondary" href="https://github.com/syntacticallysugary/private-reading/blob/main/README.md" target="_blank" rel="noopener">README ↗</a>
+      </div>
+    </div>
+
     <div class="soon-grid">
 
       <div class="project-card soon">
         <div class="card-header">
           <div class="card-meta">
-            <span class="project-number">02</span>
+            <span class="project-number">03</span>
             <span class="status-badge soon">Coming Soon</span>
           </div>
         </div>
@@ -81,7 +136,7 @@
       <div class="project-card soon">
         <div class="card-header">
           <div class="card-meta">
-            <span class="project-number">03</span>
+            <span class="project-number">04</span>
             <span class="status-badge soon">Coming Soon</span>
           </div>
         </div>
@@ -93,24 +148,12 @@
       <div class="project-card soon">
         <div class="card-header">
           <div class="card-meta">
-            <span class="project-number">04</span>
+            <span class="project-number">05</span>
             <span class="status-badge soon">Coming Soon</span>
           </div>
         </div>
         <h3>network-mcp</h3>
         <p class="tagline">An MCP server that gives AI assistants structured, approval-gated access to manage a home lab network.</p>
-        <p class="source-note">Source available on GitHub at release.</p>
-      </div>
-
-      <div class="project-card soon">
-        <div class="card-header">
-          <div class="card-meta">
-            <span class="project-number">05</span>
-            <span class="status-badge soon">Coming Soon</span>
-          </div>
-        </div>
-        <h3>Private Reading</h3>
-        <p class="tagline">Converts documents to audiobooks using self-hosted text-to-speech inference. Markdown, PDF, Word — in, audio — out.</p>
         <p class="source-note">Source available on GitHub at release.</p>
       </div>
 
