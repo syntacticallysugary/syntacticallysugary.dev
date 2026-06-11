@@ -80,12 +80,6 @@ resource "aws_cognito_user_pool_ui_customization" "shared" {
       color: #f8fafc;
       border-radius: 6px;
     }
-    a {
-      color: #60a5fa;
-    }
-    a:hover {
-      color: #93c5fd;
-    }
   CSS
 
   depends_on = [aws_cognito_user_pool_domain.custom]
@@ -137,7 +131,7 @@ resource "aws_cognito_user_pool_client" "reading" {
 
   explicit_auth_flows = ["ALLOW_REFRESH_TOKEN_AUTH"]
 
-  callback_urls = ["${var.reading_origin}/callback"]
+  callback_urls = ["${var.reading_origin}/"]
   logout_urls   = ["${var.reading_origin}/"]
 
   access_token_validity  = 60
