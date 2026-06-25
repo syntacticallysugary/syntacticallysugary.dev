@@ -9,7 +9,7 @@
     These projects represent hands-on work from the last few years — built independently,
     architected from scratch, and deployed to real infrastructure. I'm releasing them
     publicly over the next month or two as I get each one to a standard I'm comfortable
-    putting my name on. Two are live now. The others are coming.
+    putting my name on. Two are live. One is open source with no hosted demo. One is coming.
   </p>
 
   <div class="project-list">
@@ -121,32 +121,79 @@
       </div>
     </div>
 
-    <div class="soon-grid">
-
-      <div class="project-card soon">
-        <div class="card-header">
-          <div class="card-meta">
-            <span class="project-number">03</span>
-            <span class="status-badge soon">Coming Soon</span>
-          </div>
+    <div class="project-card source-available">
+      <div class="card-header">
+        <div class="card-meta">
+          <span class="project-number">03</span>
+          <span class="status-badge source-available">Source Available</span>
         </div>
-        <h3>Peekaboo Intelligence</h3>
-        <p class="tagline">Privacy-first home security. Face recognition runs on-device — raw video never leaves your local network.</p>
-        <p class="source-note">Source available on GitHub at release.</p>
       </div>
+      <h3>Peekaboo Intelligence</h3>
+      <p class="tagline">A distributed IoT and edge AI system — inference runs where the data is, not in the cloud.</p>
+      <p>
+        63 milliseconds end-to-end — from motion detected to alert delivered — on local hardware with
+        no cloud service in the loop. The cloud alternative is 500ms to two seconds and roughly
+        $100/month per camera at scale, with your video stream on someone else's infrastructure.
+        Edge AI makes that happen.
+      </p>
+      <p>
+        The system is three tiers. ESP32-S3 microcontrollers handle the camera layer: custom firmware
+        manages JPEG streaming, MQTT (Message Queuing Telemetry Transport) control over TLS, and
+        over-the-air (OTA) firmware updates. A Jetson Orin Nano handles inference — YOLOv8n person
+        detection at 8ms per frame on CPU, InsightFace face recognition at 15ms per frame on GPU.
+        A workstation runs the command module: FastAPI, LangGraph state-machine orchestration, and
+        PostgreSQL with pgvector for face embeddings.
+      </p>
+      <p>
+        The IoT engineering is where the depth is. Cameras self-register on boot — no manual
+        provisioning. Commands carry nonces with an 8-minute replay window, so the cameras can't be
+        spoofed by a replayed packet. Over-the-air updates use versioned firmware channels per board
+        type; cameras poll on boot and every five minutes, checksum-verify before applying. The same
+        patterns you'd build in an industrial deployment, on $200 of hardware.
+      </p>
+      <p>
+        One interesting engineering lesson actually came in the form of a failure. The original design
+        ran TFLite inference on each ESP32-S3 as a detection gate — true AI at the bleeding edge in
+        the microcontroller layer, only transmitting frames when something was moving. That didn't
+        survive contact with the hardware and only delivered 0.6 fps — too slow for a gate. The
+        solution was to move that inference to the Jetson. The lesson: edge AI isn't about pushing
+        inference as close to the sensor as possible. It's about matching the compute requirement to
+        the hardware that can actually deliver it. Microcontrollers handle networking and streaming.
+        The Jetson handles computer vision. That's the right split.
+      </p>
+      <p class="access-note">
+        There's no live demo — the production system runs on my home network with my family's
+        biometric data. That's the point. The code is the portfolio piece.
+      </p>
+      <div class="stack">
+        <span class="tag">Python</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">C++</span>
+        <span class="tag">PlatformIO</span>
+        <span class="tag">ESP32-S3</span>
+        <span class="tag">Jetson Orin Nano</span>
+        <span class="tag tag-ai">YOLOv8n</span>
+        <span class="tag tag-ai">InsightFace</span>
+        <span class="tag">LangGraph</span>
+        <span class="tag">PostgreSQL / pgvector</span>
+        <span class="tag">MQTT / TLS</span>
+        <span class="tag">GitHub Actions</span>
+      </div>
+      <div class="card-links">
+        <a class="link-btn secondary" href="https://github.com/syntacticallysugary/peekaboo/blob/main/README.md" target="_blank" rel="noopener">README ↗</a>
+      </div>
+    </div>
 
-      <div class="project-card soon">
-        <div class="card-header">
-          <div class="card-meta">
-            <span class="project-number">04</span>
-            <span class="status-badge soon">Coming Soon</span>
-          </div>
+    <div class="project-card soon">
+      <div class="card-header">
+        <div class="card-meta">
+          <span class="project-number">04</span>
+          <span class="status-badge soon">Coming Soon</span>
         </div>
-        <h3>Strategic Knowledge Engine</h3>
-        <p class="tagline">A local-first knowledge pipeline with anonymous search, LLM-assisted triage, and human review — wired via Model Context Protocol.</p>
-        <p class="source-note">Source available on GitHub at release.</p>
       </div>
-
+      <h3>Strategic Knowledge Engine</h3>
+      <p class="tagline">A local-first knowledge pipeline with anonymous search, LLM-assisted triage, and human review — wired via Model Context Protocol.</p>
+      <p class="source-note">Source available on GitHub at release.</p>
     </div>
 
   </div>
@@ -245,6 +292,17 @@
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
     color: var(--text-muted);
+  }
+
+  .status-badge.source-available {
+    background: rgba(20, 184, 166, 0.15);
+    border: 1px solid rgba(20, 184, 166, 0.3);
+    color: #2dd4bf;
+  }
+
+  .project-card.source-available {
+    border-color: rgba(20, 184, 166, 0.2);
+    background: linear-gradient(135deg, rgba(20,184,166,0.07) 0%, var(--surface-card) 50%);
   }
 
   h3 {
@@ -347,9 +405,4 @@
     margin-bottom: 0;
   }
 
-  .soon-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
 </style>
